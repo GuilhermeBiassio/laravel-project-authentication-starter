@@ -37,7 +37,7 @@
             </div>
             <div class="offcanvas-body">
                 <ul class="nav flex-column">
-                    @if (Auth::user()->is_admin == 2)
+                    @if (Auth::user()->is_admin == 1)
                         <li class="nav-item d-grid gap-2 mt-2">
                             <a class="btn btn-primary" href="{{ route('profile.index') }}">Listar Usuários</a>
                         </li>
