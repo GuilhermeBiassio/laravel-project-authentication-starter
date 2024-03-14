@@ -36,14 +36,16 @@ Route::middleware('auth')->group(function () {
 
         //Admin middleware group
         Route::middleware('is_admin')->group(function () {
-            Route::resource('profile', ProfileController::class);
-            Route::get('register', [RegisteredUserController::class, 'create'])
-                ->name('register');
-            Route::post('register', [RegisteredUserController::class, 'store']);
-            Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
-                ->name('password.reset');
-            Route::post('reset-password', [NewPasswordController::class, 'store'])
-                ->name('password.store');
+            Route::prefix('admin')->group(function (){
+                Route::resource('profile', ProfileController::class);
+                Route::get('register', [RegisteredUserController::class, 'create'])
+                    ->name('register');
+                Route::post('register', [RegisteredUserController::class, 'store']);
+                Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
+                    ->name('password.reset');
+                Route::post('reset-password', [NewPasswordController::class, 'store'])
+                    ->name('password.store');
+            });
         });
     });
 });
